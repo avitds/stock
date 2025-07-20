@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stock Buy Indicator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f8fb;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background: #003366;
+      color: white;
+      padding: 20px 0;
+      font-size: 24px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 80%;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #007BFF;
+      color: white;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .result {
+      margin-top: 30px;
+      font-size: 18px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      background: #eee;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .progress {
+      height: 20px;
+      background: #28a745;
+      border-radius: 10px;
+      width: 0%;
+      transition: width 0.5s;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 20px;
+      background: #f1f1f1;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    📈 Stock Buy Indicator
+  </header>
+
+  <div class="container">
+    <h2>Check Buy Signal for a Stock</h2>
+    <input type="text" id="stockSymbol" placeholder="Enter Stock Symbol (e.g., TCS, INFY)" />
+    <br />
+    <button onclick="checkSignal()">Check Indicator</button>
+
+    <div class="result" id="resultArea" style="display:none;">
+      <p><strong>Score:</strong> <span id="scoreValue">0</span>/100</p>
+      <div class="progress-bar">
+        <div class="progress" id="progressBar"></div>
+      </div>
+      <p><strong>Recommendation:</strong> <span id="recommendationText">-</span></p>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Stock Buy Indicator. All rights reserved.
+  </footer>
+
+  <script>
+    function checkSignal() {
+      const symbol = document.getElementById('stockSymbol').value.trim();
+      if (!symbol) {
+        alert("Please enter a stock symbol.");
+        return;
+      }
+
+      const score = Math.floor(Math.random() * 101); // Simulated score
+      document.getElementById('scoreValue').textContent = score;
+      document.getElementById('progressBar').style.width = score + "%";
+
+      let recommendation = "";
+      if (score > 80) recommendation = "Strong Buy";
+      else if (score > 60) recommendation = "Buy";
+      else if (score > 40) recommendation = "Hold";
+      else recommendation = "Sell";
+
+      document.getElementById('recommendationText').textContent = recommendation;
+      document.getElementById('resultArea').style.display = "block";
+    }
+  </script>
+</body>
+</html>
